@@ -1,11 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>ML Troll</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloquear enlace</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: clamp(28px, 6vw, 60px);
+        margin-bottom: 50px;
+    }
+
+    #button {
+        background: #fff;
+        color: #000;
+        border: none;
+        padding: 18px 32px;
+        border-radius: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        position: fixed;
+        transition: left 0.25s ease, top 0.25s ease;
+    }
+
+    #button:hover {
+        background: #ddd;
+    }
+
+    #message {
+        display: none;
+        font-size: clamp(30px, 7vw, 70px);
+        font-weight: bold;
+        line-height: 1.2;
+    }
+
+    #submessage {
+        margin-top: 20px;
+        font-size: clamp(18px, 3vw, 30px);
+        font-weight: normal;
+    }
+</style>
 </head>
+
 <body>
-    <h1>JAJAJA 😭</h1>
-    <p>Desde aquí no se bloquea andaaa</p>
+
+<div class="container">
+
+    <h1 id="title">¿Quieres bloquear este enlace?</h1>
+
+    <button id="button">
+        BLOQUEAR ENLACE WEB
+    </button>
+
+    <div id="message">
+        JAJAJAJA 😭
+        <div id="submessage">
+            Desde aquí no se bloquea andaaa
+        </div>
+    </div>
+
+</div>
+
+<script>
+const button = document.getElementById("button");
+const title = document.getElementById("title");
+const message = document.getElementById("message");
+
+let attempts = 0;
+
+button.addEventListener("click", () => {
+
+    attempts++;
+
+    if (attempts <= 3) {
+
+        const maxX = window.innerWidth - button.offsetWidth - 20;
+        const maxY = window.innerHeight - button.offsetHeight - 20;
+
+        const x = Math.max(10, Math.random() * maxX);
+        const y = Math.max(10, Math.random() * maxY);
+
+        button.style.left = `${x}px`;
+        button.style.top = `${y}px`;
+
+    } else {
+
+        button.style.display = "none";
+        title.style.display = "none";
+        message.style.display = "block";
+
+    }
+
+});
+</script>
+
 </body>
 </html>
